@@ -1,0 +1,18 @@
+{% extends 'core.html' %}
+
+
+<div>
+    {% block body %}
+    <div class="row">
+        <div class="col-10 mx-auto">
+            {% include "messages.html" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% block home_body %}
+            {% endblock home_body %}
+        </div>
+    </div>
+    {% endblock body %}
+</div>

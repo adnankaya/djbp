@@ -1,0 +1,15 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load core_tags %}
+{% load humanize %}
+
+
+{% block users_body %}
+<div class="row p-4">
+    <div class="col">
+        <h5>
+            {{_("Client: ")}} {{client.user.get_full_name}}
+        </h5>
+    </div>
+</div>
+{% endblock users_body %}

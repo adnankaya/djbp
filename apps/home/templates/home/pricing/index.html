@@ -1,0 +1,119 @@
+{% extends 'home/base.html' %}
+{% load i18n %}
+
+{% block home_body %}
+<div class="row" >
+    <div class="col">
+        <style>
+            .pricing-container {
+                /* max-width: 800px; */
+                margin: 50px auto;
+                
+            }
+
+            .pricing-card {
+                border: 1px solid #dee2e6;
+                border-radius: 10px;
+                overflow: hidden;
+                margin: 10px;
+                transition: transform 0.3s;
+                background-color: #f8f9fa;
+            }
+
+            .pricing-card:hover {
+                transform: scale(1.05);
+            }
+
+            .pricing-header {
+                background-color: #4f93dc;
+                color: #fff;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .pricing-price {
+                font-size: 2rem;
+                font-weight: bold;
+                margin-bottom: 0;
+            }
+
+            .pricing-features {
+                list-style: none;
+                padding: 0;
+                text-align: center;
+            }
+
+            .pricing-features li {
+                margin: 10px 0;
+            }
+            .pricing-page-title {
+                font-size: 3em;
+                font-weight: bold;
+                color: rgb(88, 80, 80);
+            }
+        </style>
+        <div class="container pricing-container">
+            <h1 class="pricing-page-title text-center">{{_("Our Pricing Plans")}}</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="pricing-card shadow">
+                        <div class="pricing-header">
+                            <h3>{{_("Basic")}}</h3>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="pricing-price text-center py-2 mt-1">$10/month</h2>
+                            <ul class="pricing-features">
+                                <li>1 User</li>
+                                <li>24/7 Support</li>
+                            </ul>
+                            <div class="d-flex justify-content-center my-2 py-2">
+                                <button class="btn btn-primary btn-lg" style="background-color: #3d75b1;">
+                                    {{_("Get Started")}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pricing-card shadow">
+                        <div class="pricing-header" style="background-color: #37bd57;">
+                            <h3>{{_("Standard")}}</h3>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="pricing-price text-center py-2 mt-1">$40/month</h2>
+                            <ul class="pricing-features">
+                                <li>6 Users</li>
+                                <li>24/7 Support</li>
+                            </ul>
+                            <div class="d-flex justify-content-center my-2 py-2">
+                                <button class="btn btn-success btn-lg">{{_("Get Started")}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pricing-card shadow">
+                        <div class="pricing-header" style="background-color: #e86976;">
+                            <h3>{{_("Enterprise")}}</h3>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="pricing-price text-center py-2 mt-1">$99/month</h2>
+                            <ul class="pricing-features">
+                                <li>N Users</li>
+                                <li>24/7 Support</li>
+                            </ul>
+                            <div class="d-flex justify-content-center my-2 py-2">
+                                <button class="btn btn-danger btn-lg" style="background-color: #db616d;">
+                                    {{_("Contact Us")}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock home_body %}

@@ -1,0 +1,30 @@
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link " href="{% url 'home:dashboard' %}">
+        <i class="bi bi-grid"></i>
+        <span>{{_("Dashboard")}}</span>
+      </a>
+    </li>
+    <li class="nav-heading">{{_("Pages")}}</li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" target="_blank" href="{% url 'home:faq' %}">
+        <i class="bi bi-question-circle"></i>
+        <span>{{_("F.A.Q")}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" target="_blank" href="{% url 'home:contact' %}">
+        <i class="bi bi-envelope"></i>
+        <span>{{_("Contact")}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" target="_blank" href="{% url 'home:aboutus' %}">
+        <i class="bi bi-building"></i>
+        <span>{{_("About Us")}}</span>
+      </a>
+    </li>
+  </ul>
+</aside>

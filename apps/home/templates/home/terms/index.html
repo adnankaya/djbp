@@ -1,0 +1,13 @@
+{% extends 'home/base.html' %}
+{% load i18n %}
+
+{% block home_body %}
+<div class="container my-5">
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == "tr" %}
+    {% include "home/terms/tr.html"%}
+    {% elif LANGUAGE_CODE == "en" %}
+    {% include "home/terms/en.html"%}
+    {% endif %}
+</div>
+{% endblock home_body %}

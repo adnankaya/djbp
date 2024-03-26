@@ -1,0 +1,76 @@
+{% load django_htmx %}
+{% load static %}
+{% load i18n %}
+{% load core_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block head_title %}
+        {% get_website as website %}
+        {% if title %}
+        {{title}}
+        {% else %}
+        djbp | {{_("Django Boilerplate")}}
+        {% endif %}
+        {% endblock head_title %}
+    </title>
+    {% block extra_head %}
+    {% endblock extra_head %}
+
+    {% include "title-meta.html" %}
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon.png">
+    {% include "libs-css.html" %}
+    {% include "google-analytics.html" %}
+</head>
+
+<body hx-ext="debug, event-header">
+    <header>
+        {% block core_header%}
+        {% include 'header.html' %}
+        {% endblock core_header%}
+    </header>
+    <main class="container-fluid">
+        <div class="core-body">
+            {% block body%}
+            <div class="row">
+                <div class="col-10 mx-auto">
+                    {% include "messages.html" %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10 mx-auto">
+                    {% include "messages-form-errors.html" %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+            </div>
+            {% endblock body%}
+            <div class="row">
+                <div class="col">
+                    {% block extra_body %}
+                    {% endblock extra_body %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="my-md-5 pt-md-5">
+        {% block core_footer%}
+        {% include 'footer.html' %}
+        {% endblock core_footer%}
+    </footer>
+    {% include "libs-js.html" %}
+    {% django_htmx_script %}
+</body>
+
+</html>

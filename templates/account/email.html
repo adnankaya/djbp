@@ -1,0 +1,123 @@
+{% extends "account/base_manage_email.html" %}
+{% load allauth i18n %}
+{% block head_title %}
+{% trans "Email Addresses" %}
+{% endblock head_title %}
+{% block content %}
+<div class="container my-2">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card p-2">
+                <div class="card-title">
+                    <h2>{% trans "Email Addresses" %}</h2>
+                </div>
+                {% if emailaddresses %}
+                <p>{% trans 'The following email addresses are associated with your account:' %}</p>
+                {% url 'account_email' as email_url %}
+                <div class="">
+                    <form action="{{email_url}}" method="post">
+                        {% csrf_token %}
+                        <div class="list-group list-group-flush">
+                            {% for radio in emailaddress_radios %}
+                            <div class="list-group-item list-group-item-action">
+                                {% with emailaddress=radio.emailaddress %}
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <input {% if radio.checked %} checked {% endif %} value="{{emailaddress.email}}"
+                                            type="radio" name="email" id="{{radio.id}}" />
+                                        <label for="{{radio.id}}"> {{ emailaddress.email }} </label>
+                                    </div>
+                                    <div>
+                                        {% if emailaddress.verified %}
+                                        <span class="badge bg-success-subtle text-primary-emphasis px-1 py-2">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            {% translate "Verified" %}
+                                        </span>
+                                        {% else %}
+                                        <span class="badge bg-warning-subtle text-primary-emphasis px-1 py-2">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            {% translate "Unverified" %}
+                                        </span>
+                                        {% endif %}
+                                        {% if emailaddress.primary %}
+                                        <span class="badge bg-primary-subtle text-primary-emphasis px-1 py-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            {% translate "Primary" %}
+                                        </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endwith %}
+                                <div class="my-2">
+                                    <span>
+                                        <button type="submit" name="action_primary" class="btn btn-sm btn-primary">
+                                            <i class="fa-solid fa-check-double"></i>
+                                            {% trans 'Make Primary' %}
+                                        </button>
+                                    </span>
+                                    <span>
+                                        <button type="submit" name="action_send" class="btn btn-sm btn-warning">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                            {% trans 'Re-send Verification' %}
+                                        </button>
+                                    </span>
+                                    <span>
+                                        <button type="submit" name="action_remove" class="btn btn-sm btn-danger">
+                                            <i class="fa-solid fa-trash"></i>
+                                            {% trans 'Remove' %}
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </form>
+                </div>
+                {% else %}
+                {% include "account/snippets/warn_no_email.html" %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6">
+            {% if can_add_email %}
+            <div class="card p-2">
+                <div class="card-title">
+                    <h2>{% trans "Add Email Address" %}</h2>
+                </div>
+                <div>
+                    {% url 'account_email' as action_url %}
+                    <form action="{{action_url}}" method="post">
+                        {% csrf_token %}
+                        <div class="form-floating mb-2">
+                            <input name="email" type="email" class="form-control" id="idEmail"
+                                placeholder="{{_('Email')}}" required>
+                            <label for="idEmail">{{_("Email")}}</label>
+                        </div>
+                        <button name="action_add" type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-circle-plus"></i>
+                            {% trans "Add Email" %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+{% block extra_body %}
+<script type="text/javascript">
+    (function () {
+        var message = "{% trans 'Do you really want to remove the selected email address?' %}";
+        var actions = document.getElementsByName('action_remove');
+        if (actions.length) {
+            actions[0].addEventListener("click", function (e) {
+                if (!confirm(message)) {
+                    e.preventDefault();
+                }
+            });
+        }
+    })();
+</script>
+{% endblock extra_body %}

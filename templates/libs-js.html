@@ -1,0 +1,20 @@
+{% load static %}
+<!-- htmx -->
+<script defer src="{% static 'libs/node_modules/htmx.org/dist/htmx.min.js' %}"></script>
+<!-- chartjs must be chart.umd.js !!!! -->
+<script defer src="{% static 'libs/node_modules/chart.js/dist/chart.umd.js' %}"></script>
+<script defer
+    src="{% static 'libs/node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js' %}"></script>
+<script defer
+    src="{% static 'libs/node_modules/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js' %}"></script>
+<script defer
+    src="{% static 'libs/node_modules/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js' %}"></script>
+<!-- bootstrap -->
+<script defer src="{% static 'libs/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Project JS -->
+<script defer src="{% static 'js/main.js' %}"></script>
+<!-- 
+    The defer attribute allows the browser to continue rendering the page whilst 
+        htmx is downloading, making your site’s first render faster.
+ -->

@@ -1,0 +1,45 @@
+{% extends "socialaccount/base_entrance.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+{% trans "Signup" %}
+{% endblock head_title %}
+{% block content %}
+<section class="my-5">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card p-2">
+                <h1>
+                    {% trans "Sign Up" %}
+                </h1>
+                <p>
+                    {% blocktrans with provider_name=account.get_provider.name site_name=site.name %}
+                    You are about to use your {{provider_name}} account to login to
+                    {{site_name}}. As a final step, please complete the following form:
+                    {% endblocktrans %}
+                </p>
+                {% url 'socialaccount_signup' as action_url %}
+                <form action="{{action_url}}" method="post">
+                    {% csrf_token %}
+                    <div class="form-floating mb-3">
+                        <input name="email" value="{{form.email.value|default_if_none:""}}" type="email" class="form-control"
+                            id="floatingInput" placeholder="">
+                        <label for="floatingInput">{{_("Email address")}}</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input name="username" value="{{form.username.value|default_if_none:""}}" type="text" class="form-control"
+                            id="floatingUsername" placeholder="" required>
+                        <label for="floatingUsername">{{_("Username")}}</label>
+                    </div>
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary">
+                        {% trans "Sign Up" %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

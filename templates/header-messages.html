@@ -1,0 +1,41 @@
+{% load static %}
+<li class="nav-item dropdown">
+
+    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+        <i class="bi bi-chat-left-text"></i>
+        <span class="badge bg-success badge-number">1</span>
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+        <li class="dropdown-header">
+            You have 1 new messages
+            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+        </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+
+        <li class="message-item">
+            <a href="#">
+                <img src="{% static 'assets/profiles/user.png' %}" alt="" class="rounded-circle">
+                <div>
+                    <h4>System</h4>
+                    <p>New data has been fetched from your tracked brands..</p>
+                    <p>4 hrs. ago</p>
+                </div>
+            </a>
+        </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+
+       
+        
+
+        <li class="dropdown-footer">
+            <a href="#">Show all messages</a>
+        </li>
+
+    </ul>
+
+</li>

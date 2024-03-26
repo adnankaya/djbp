@@ -1,0 +1,38 @@
+{% extends 'home/dashboard/base.html' %}
+{% load i18n %}
+
+{% block dashboard_body %}
+<div class="pagetitle">
+    <h1>{{_("Dashboard")}}</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home:index' %}">{{_("Home")}}</a></li>
+            <li class="breadcrumb-item active">{{_("Dashboard")}}</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section dashboard">
+
+    <h1 class="text-center">
+        Welcome to the dashboard
+    </h1>
+
+    <div class="row">
+        <div class="col">
+            <div hx-get="{% url 'home:dashboard-chart-line' %}" hx-trigger="load" hx-swap="outerHTML">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div hx-get="{% url 'home:dashboard-chart-bar' %}" hx-trigger="load" hx-swap="outerHTML">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+{% endblock dashboard_body %}

@@ -1,0 +1,24 @@
+{% if user.is_authenticated %}
+{% load core_tags %}
+{% is_email_verified user user.email as is_verified %}
+{% if not is_verified %}
+<div class="alert alert-warning my-2">
+    <form method="post" action="{% url 'account_email' %}">
+        {% csrf_token %}
+        <input type="hidden" name="email" value="{{user.email}}" />
+        <div>
+            <strong>
+                <i class="fa-solid fa-bell fs-5"></i>
+                {{_("Please confirm your email ")}}
+            </strong>
+            <span>
+                <button class="btn btn-primary btn-sm" type="submit" name="action_send">
+                    {{_("You can click here")}}
+                </button>
+                {{_("to request confirmation mail.")}}
+            </span>
+        </div>
+    </form>
+</div>
+{% endif %}
+{% endif %}

@@ -1,0 +1,48 @@
+{% extends "socialaccount/base_entrance.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+{% trans "Sign In" %}
+{% endblock head_title %}
+{% block content %}
+<section class="my-5">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card p-2">
+                <div>
+                    {% if process == "connect" %}
+                    <h1>
+                        {% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}
+                    </h1>
+                    <p>
+                        {% blocktrans with provider.name as provider %}
+                        You are about to connect a new third-party account from {{ provider }}.
+                        {% endblocktrans %}
+                    </p>
+                    {% else %}
+                    <h1>
+                        {% blocktrans with provider.name as provider %}
+                        Sign In Via {{ provider }}
+                        {% endblocktrans %}
+                    </h1>
+                    <p>
+                        {% blocktrans with provider.name as provider %}
+                        You are about to sign in using a third-party account from {{ provider }}.
+                        {% endblocktrans %}
+                    </p>
+                    {% endif %}
+                </div>
+                <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">
+                            {{_("Continue")}}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock content %}

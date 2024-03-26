@@ -1,0 +1,39 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+{% url 'account_login' as login_url %}
+{% url 'account_reset_password' as reset_url %}
+
+<div class="row mt-3">
+    <div class="col-lg-4 col-md-6 mx-auto">
+        <div class="card p-4 m-2 p-0 shadow card-login">
+            <div class="card-title opacity-100">
+                <div class="fs-1 text-center text-primary-emphasis">
+                    <h1 class="d-none d-lg-block">
+                        <img src="{% static 'assets/img/apple-touch-icon.png' %}" alt="Logo" width="32" height="32"
+                    class="">
+                        Djbp
+                    </h1>
+                    <h3 class="text-center">
+                        {{_("Please Sign In")}}
+                    </h3>
+                </div>
+            </div>
+            <div class="card-body">
+                {% include "account/login-form.html" %}
+            </div>
+            <div class="my-4 d-flex justify-content-between">
+                <a class="text-decoration-none" href="{{ signup_url }}">
+                    {{_("Don't have an account? Sign Up")}}
+                </a>
+                <a class="text-decoration-none" href="{{reset_url}}">
+                    {{_("Forgot password?")}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

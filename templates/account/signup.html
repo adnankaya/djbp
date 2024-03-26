@@ -1,0 +1,72 @@
+{% extends "account/base_entrance.html" %}
+{% load static %}
+{% load socialaccount %}
+
+
+{% block content %}
+
+{% url 'account_signup' as action_url %}
+{% url 'account_login' as signin_url %}
+
+
+
+
+<div class="row mt-4">
+    <div class="col-lg-4 col-md-6 mx-auto">
+
+        <div class="card p-4 m-2 p-0 shadow card-signup">
+            <div class="card-title">
+                <div class="fs-1 text-center">
+                    <h1 class="d-none d-lg-block">
+                        <img src="{% static 'assets/img/apple-touch-icon.png' %}" alt="Logo" width="32" height="32"
+                    class="">
+                        djbp
+                    </h1>
+                    <h3 class="text-center">
+                        {{_("Sign Up")}}
+                    </h3>
+                </div>
+            </div>
+            <form method="post" action="{{action_url}}">
+                {% csrf_token %}
+
+                {% for field in form %}
+
+                <div class="form-floating mb-2">
+                    <input name="{{field.name}}" type="{{field.field.widget.input_type}}" class="form-control"
+                        id="idU{{field.label}}" placeholder="{{field.field.widget.attrs.placeholder}}"
+                        value="{{ field.value|default_if_none:'' }}" required />
+                    {% for error in field.errors %}
+                    <strong class="text-danger font-weight-normal" style="padding-left: 5px">
+                        *{{ error|escape}}
+                    </strong>
+                    {% endfor %}
+                    <label for="id{{field.label}}">{{field.label}}</label>
+
+                </div>
+
+                {% endfor %}
+                <div class="d-grid gap-2">
+                    <button class="btn btn-dark btn-lg mt-4" type="submit">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        {{_("Sign Up")}}
+                    </button>
+                    <a href="{% provider_login_url 'google' %}" class="btn btn btn-danger my-2" role="button"
+                        aria-pressed="true">
+                        <i class="fa-brands fa-google bg-light text-danger p-1 rounded-circle"></i>
+                        {{_("Sign in with Google")}}
+                    </a>
+                </div>
+                <div class="my-4 d-flex justify-content-between">
+                    <a class="text-decoration-none" href="{{ signin_url }}">
+                        {{_("Have an account? Sign In")}}
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

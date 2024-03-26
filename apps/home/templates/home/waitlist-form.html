@@ -1,0 +1,60 @@
+<form action="{% url 'home:waitlist-register' %}" method="post" class="">
+    {% csrf_token %}
+
+    <div class="input-group input-group-sm">
+        <input id="idWaitlistEmail" name="email" type="email" class="form-control" placeholder=""
+            aria-label="waitlist email" aria-describedby="waitlist-email-addon" required>
+        <button class="btn btn-primary" type="submit" id="waitlist-email-addon">{{_("Join!")}}</button>
+    </div>
+    <div class="mt-3">
+        <div class="py-2 fw-bold" role="alert">
+            {{_("Join Waitlist!")}}
+        </div>
+    </div>
+</form>
+<script>
+    const words = [
+        "adnankaya@example.com",
+        "adnan@example.com",
+        "kaya@example.com",
+    ];
+    let i = 0;
+    let timer;
+
+    function typingEffect() {
+        let word = words[i].split("");
+        var loopTyping = function () {
+            if (word.length > 0) {
+                let elem = document.getElementById('idWaitlistEmail');
+                elem.setAttribute('placeholder', elem.getAttribute('placeholder') + word.shift());
+            } else {
+                deletingEffect();
+                return false;
+            };
+            timer = setTimeout(loopTyping, 200);
+        };
+        loopTyping();
+    };
+
+    function deletingEffect() {
+        let word = words[i].split("");
+        var loopDeleting = function () {
+            if (word.length > 0) {
+                word.pop();
+                document.getElementById('idWaitlistEmail').setAttribute('placeholder', word.join(""));
+            } else {
+                if (words.length > (i + 1)) {
+                    i++;
+                } else {
+                    i = 0;
+                };
+                typingEffect();
+                return false;
+            };
+            timer = setTimeout(loopDeleting, 100);
+        };
+        loopDeleting();
+    };
+
+    typingEffect();
+</script>

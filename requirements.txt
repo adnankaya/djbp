@@ -1,0 +1,16 @@
+celery==5.3.5
+certifi==2023.7.22
+Django==5.0.1
+django-allauth==0.61.1
+django-db-logger==0.1.13
+django-extensions==3.2.3
+django-htmx==1.17.2
+django-redis==5.4.0
+djmail==2.0.0
+gunicorn==21.2.0
+ipdb==0.13.13
+ipython==8.21.0
+psycopg2-binary==2.9.9
+python-dotenv==1.0.0
+redis==5.0.1
+requests==2.31.0

@@ -1,0 +1,142 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+
+<div>
+    {% block dashboard_body %}
+    <div class="pagetitle">
+        <h1>{{_("Profile")}}</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">{{_("Home")}}</a></li>
+            <li class="breadcrumb-item">{{_("Users")}}</li>
+            <li class="breadcrumb-item active">{{_("Profile")}}</li>
+          </ol>
+        </nav>
+      </div>
+  
+      <section class="section profile">
+        <div class="row">
+          <div class="col-xl-4">
+  
+            <div class="card">
+              <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+  
+                <img src="{% static 'assets/profiles/user.png' %}" alt="Profile" class="rounded-circle">
+                <h2>{{user.get_full_name}}</h2>
+                <h3>{{user.client.title}}</h3>
+                <div class="social-links mt-2">
+                  <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                  <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+  
+          <div class="col-xl-8">
+  
+            <div class="card">
+              <div class="card-body pt-3">
+                <!-- Bordered Tabs -->
+                <ul class="nav nav-tabs nav-tabs-bordered">
+  
+                  <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">{{_("Overview")}}</button>
+                  </li>
+  
+                  <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">{{_("Edit Profile")}}</button>
+                  </li>
+  
+                  <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">{{_("Settings")}}</button>
+                  </li>
+  
+                  <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">{{_("Change Password")}}</button>
+                  </li>
+  
+                </ul>
+                <div class="tab-content pt-2">
+  
+                  <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                    <h5 class="card-title">{{_("About")}}</h5>
+                    <p class="small fst-italic">
+                        {{user.client.about}}
+                    </p>
+  
+                    <h5 class="card-title">{{_("Profile Details")}}</h5>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label ">{{_("Full Name")}}</div>
+                      <div class="col-lg-9 col-md-8">{{user.get_full_name}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">{{_("Company")}}</div>
+                      <div class="col-lg-9 col-md-8">{{user.default_brand.name}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">{{_("Job")}}</div>
+                      <div class="col-lg-9 col-md-8">{{user.client.job}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">{{_("Country")}}</div>
+                      <div class="col-lg-9 col-md-8">{{user.client.country}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">{{_("Address")}}</div>
+                      <div class="col-lg-9 col-md-8">{{user.client.address}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">{{_("Phone")}}</div>
+                      <div class="col-lg-9 col-md-8">{{user.client.phone}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">{{_("Email")}}</div>
+                      <div class="col-lg-9 col-md-8">{{user.email}}</div>
+                    </div>
+  
+                  </div>
+  
+                  <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+  
+                    <!-- Profile Edit Form -->
+                    {% include 'users/profile-form.html' %}
+                    <!-- End Profile Edit Form -->
+                    
+                </div>
+                
+                <div class="tab-pane fade pt-3" id="profile-settings">
+                    
+                    <!-- Settings Form -->
+                    {% include 'users/profile-settings-form.html' %}
+                    <!-- End settings Form -->
+                    
+                </div>
+                
+                <div class="tab-pane fade pt-3" id="profile-change-password">
+                    <!-- Change Password Form -->
+                    {% include 'users/profile-password-change-form.html' %}
+                    <!-- End Change Password Form -->
+  
+                  </div>
+  
+                </div><!-- End Bordered Tabs -->
+  
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </section>
+    {% endblock dashboard_body %}
+</div>

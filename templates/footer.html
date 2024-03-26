@@ -1,0 +1,47 @@
+{% load static %}
+<div class="container py-3">
+  <div class="row">
+    <div class="col-4 col-md">
+      <h5 class="fw-bold">{{_("Features")}}</h5>
+      <ul class="list-unstyled text-small">
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("Feature 1")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("Feature 2")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("Feature 3")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("Feature 4")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("Feature 5")}}</a></li>
+      </ul>
+    </div>
+    <div class="col-4 col-md">
+      <h5 class="fw-bold">{{_("Resources")}}</h5>
+      <ul class="list-unstyled text-small">
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("Testimonials")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("User Stories")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("Blog")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("Support")}}</a></li>
+      </ul>
+    </div>
+    <div class="col-4 col-md">
+      <h5 class="fw-bold">{{_("About")}}</h5>
+      <ul class="list-unstyled text-small">
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="{% url 'home:aboutus' %}">{{_("About Us")}}</a></li>
+        <!-- <li class="mb-1"><a class="link-dark text-decoration-none" href="#">{{_("Pricing")}}</a></li> -->
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="{% url 'home:contact' %}">{{_("Contact")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="{% url 'home:faq' %}">{{_("F.A.Q")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="{% url 'home:terms' %}">{{_("Terms")}}</a></li>
+        <li class="mb-1"><a class="link-dark text-decoration-none" href="{% url 'home:privacy' %}">{{_("Privacy")}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md">
+      <span>
+        <img src="{% static 'assets/img/apple-touch-icon.png' %}" alt="Logo" width="32" height="32"
+                    class="">
+        <small>
+          Django Boilerplate | Made by <a href="https://www.linkedin.com/in/adnan-kayace/" target="_blank">Adnan Kaya </a>
+        </small>
+      </span>
+      <small class="d-block mb-3 text-body-secondary">© 2011– {% now "Y" %} </small>
+    </div>
+  </div>
+</div>

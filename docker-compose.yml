@@ -1,0 +1,79 @@
+version: '3.7'
+services:
+  web:
+    container_name: container_web_djbp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000 --settings=src.settings.dev"
+    # restart: always
+    stdin_open: true
+  
+  worker:
+    container_name: container_worker_djbp
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: /start-celeryworker
+    volumes:
+      - .:/usr/src/app/
+    env_file:
+      - ./.env
+    ports:
+      - 6900:6900
+    depends_on:
+      - redis
+    stdin_open: true
+    tty: true
+
+  beat:
+    container_name: container_beat_djbp
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: /start-celerybeat
+    volumes:
+      - .:/usr/src/app/
+    env_file:
+      - ./.env
+    ports:
+      - 6904:6904
+    depends_on:
+      - redis
+    stdin_open: true
+    tty: true
+
+  db:
+    image: postgres:latest
+    container_name: container_db_djbp
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: ${DB_NAME:-db_djbp}
+      POSTGRES_USER: ${POSTGRES_USER:-developer}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-developer}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres_volume:/data/postgres
+    tty: true
+
+  redis:
+    image: redis:latest
+    container_name: container_redis_djbp
+    ports:
+      - 6379:6379
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+  
+  
+volumes:
+  postgres_volume:
+
+

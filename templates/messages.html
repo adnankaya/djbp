@@ -1,0 +1,33 @@
+{% if messages %}
+<style>
+    .text-bg-alert-warning {
+        background-color: orange;
+    }
+
+    .text-bg-alert-success {
+        background-color: rgb(10, 179, 10);
+    }
+
+    .text-bg-alert-info {
+        background-color: rgb(20, 220, 220);
+    }
+
+    .text-bg-alert-error {
+        background-color: rgb(246, 61, 61);
+    }
+</style>
+<div class="p-3">
+    {% for message in messages %}
+    <div class="alert alert-{% if message.tags %}{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} alert-dismissible fade show my-3"
+        role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fa-solid fa-bell fs-5"></i>
+                <strong>{{ message }}</strong>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

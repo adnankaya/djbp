@@ -1,0 +1,93 @@
+<style>
+    .box {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-box-reflect: below 0 linear-gradient(transparent, transparent, #0005);
+    }
+
+    .box .loader {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        animation: animateLoading 8s linear infinite;
+    }
+
+    .box .loader:nth-child(2),
+    .box .loader:nth-child(4) {
+        animation-delay: -4s;
+        filter: hue-rotate(100deg);
+    }
+
+    @keyframes animateLoading {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .box .loader:nth-child(1)::before,
+    .box .loader:nth-child(2)::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to top, transparent, rgba(0, 255, 249, 0.4));
+        background-size: 100px 180px;
+        background-repeat: no-repeat;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+    }
+
+    .container .loader i {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        background: #00aeff;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #00aeff,
+            0 0 20px #00aeff,
+            0 0 30px #00aeff,
+            0 0 40px #00aeff,
+            0 0 50px #00aeff,
+            0 0 60px #00aeff,
+            0 0 70px #00aeff,
+            0 0 80px #00aeff,
+            0 0 90px #00aeff,
+            0 0 100px #00aeff;
+        z-index: 10;
+    }
+
+    .box .loader span {
+        position: absolute;
+        inset: 20px;
+        background: rgb(33, 33, 33);
+        border-radius: 50%;
+        z-index: 1;
+        background: radial-gradient(circle at center, #333333 10%, #777777 40%, #ccc6c6 80%, #ffffff 100%);
+        background: radial-gradient(circle at center, rgb(0, 0, 0) 20%, rgb(111, 111, 111) 60%, rgb(0, 0, 0) 80%, rgb(0, 0, 0) 50%);
+
+
+    }
+</style>
+
+<div class="container">
+    <div class="box">
+        <div class="loader"><span></span></div>
+        <div class="loader"><span></span></div>
+        <div class="loader"><i class="fa-solid fa-user-tie"></i></div>
+        <div class="loader"><i class="fa-solid fa-user-astronaut"></i></div>
+    </div>
+</div>

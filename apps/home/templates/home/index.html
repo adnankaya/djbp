@@ -1,0 +1,103 @@
+{% extends 'home/base.html' %}
+{% load i18n %}
+
+{% block home_body %}
+<style>
+    span.emphasized-word {
+        border-radius: 30px 5px 30px 5px;
+        background-color: rgb(255, 255, 255);
+        color: black;
+        padding: 8px;
+        box-shadow: 0 3px 7px 1px rgba(69, 42, 1, 0.8);
+    }
+
+    @media only screen and (max-width: 600px) {
+        span.emphasized-word {
+            box-shadow: 0 1px 3px 1px rgba(69, 42, 1, 0.8);
+            margin-bottom: 5px;
+        }
+    }
+</style>
+<div class="container-fluid my-4">
+    <section id="hero" class="d-flex align-items-center my-4">
+        <div class="container text-center">
+            <div class="mt-2 mb-4">
+                <i class="fa-brands fa-python fa-beat text-dark fs-1 m-1"
+                    style="--fa-animation-duration: 3s; --fa-animation-iteration-count: 10;"></i>
+                <i class="fa-solid fa-bolt fa-fade text-dark fs-1 m-1"
+                    style="--fa-animation-duration: 3s; --fa-animation-iteration-count: 10;"></i>
+                <i class="fa-solid fa-rocket fa-shake text-dark fs-1 m-1"
+                    style="--fa-animation-duration: 3s; --fa-animation-iteration-count: 10;"></i>
+                
+            </div>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == "en" %}
+            <h1 class="display-1 fw-bold">
+                <span class="emphasized-word px-3">Django</span>
+                Boilerplate
+            </h1>
+            <h2 class="display-5 my-sm-2">Build Your Web App Faster</h2>
+            {% elif LANGUAGE_CODE == "tr" %}
+            <h1 class="display-1 fw-bold">
+                Boilerplate
+                <span class="emphasized-word">Django</span>
+            </h1>
+            <h2 class="display-5 my-sm-2">Web Uygulamanızı Daha Hızlı Geliştirin</h2>
+            {% endif %}
+            <h5 class="fw-normal">
+                {{_("Build and ship faster web applications with djbp.")}}
+            </h5>
+            <div class="row">
+                <div class="col-lg-5 mx-auto my-4">
+                    {% include 'home/waitlist-form.html' %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg">{{_("Sign Up")}}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="features" class="py-5">
+        <div class="container text-center">
+            <h2 class="opacity-75 border-bottom border-light p-2 mb-2 border-opacity-25">{{_("Key Features")}}</h2>
+            <div class="row">
+                <div class="col-lg-4 mb-2">
+                    <h3>
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        {{_("Feature 1")}}
+                    </h3>
+                    <p>
+                        {% blocktranslate %}
+                        Feature 1 description...
+                        {% endblocktranslate %}
+                    </p>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <h3>
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        {{_("Feature 2")}}
+                    </h3>
+                    <p>
+                        {% blocktranslate %}
+                        Feature 2 description...
+                        {% endblocktranslate %}
+                    </p>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <h3>
+                        <i class="fa-solid fa-chart-pie"></i>
+                        {{_("Feature 3")}}
+                    </h3>
+                    <p>
+                        {% blocktranslate %}
+                        Feature 3 description...
+                        {% endblocktranslate %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock home_body %}

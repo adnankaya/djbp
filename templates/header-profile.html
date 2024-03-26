@@ -1,0 +1,45 @@
+{% load static %}
+
+<li class="nav-item dropdown pe-3">
+
+    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+        <img src="{% static 'assets/profiles/user.png' %}" alt="Profile" class="rounded-circle">
+        <span class="d-none d-md-block dropdown-toggle ps-2">
+            {{user.get_full_name}}
+        </span>
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+        <li class="dropdown-header">
+            <h6>{{user.get_full_name}}</h6>
+            <span>{{user.client.title}}</span>
+        </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+
+        <li>
+            <a class="dropdown-item d-flex align-items-center" href="{% url 'users:me' %}">
+                <i class="bi bi-person"></i>
+                <span>{{_("My Profile")}}</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item d-flex align-items-center" href="{% url 'users:me' %}">
+                <i class="bi bi-gear"></i>
+                <span>{{_("Account Settings")}}</span>
+            </a>
+        </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+
+        <li>
+            <a class="dropdown-item d-flex align-items-center" href="{% url 'account_logout' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>{{_("Sign Out")}}</span>
+            </a>
+        </li>
+
+    </ul>
+</li>

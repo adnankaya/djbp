@@ -1,0 +1,62 @@
+{% load static %}
+
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
+
+
+<header class="p-3 shadow-sm">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/"
+                class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-primary-emphasis text-decoration-none">
+                <img src="{% static 'assets/img/apple-touch-icon.png' %}" alt="Logo" width="48" height="48"
+                    class="d-inline-block align-text-top">
+                    <span class="">
+                        <span>{{_("Django Boilerplate")}}</span>
+                    </span>
+            </a>
+            <div>
+                {% include 'languages.html' %}
+            </div>
+            {% if user.is_authenticated %}
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a class="nav-link text-primary-emphasis" aria-current="page" href="{% url 'home:dashboard' %}">
+                        <i class="fa-solid fa-chart-line"></i>
+                        {{_("Dashboard")}}
+                    </a>
+                </li>
+                <li class="">
+                    <a class="nav-link text-primary-emphasis" href="{% url 'home:pricing' %}">
+                        <i class="fa-solid fa-magnifying-glass-dollar"></i>
+                        {{_("Pricing")}}
+                    </a>
+                </li>
+            </ul>
+            <div class="dropdown ms-1 mb-sm-2">
+                <a href="#"
+                    class="d-block link-body-emphasis text-decoration-none dropdown-toggle d-flex align-items-center"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{% static 'assets/profiles/user.png' %}" alt="user profile image" width="32" height="32"
+                        class="rounded-circle me-1">
+                    <span class="d-none d-md-block ">{{user.username}}</span>
+                </a>
+                <ul class="dropdown-menu shadow-lg border-0 small">
+                    <li class="mb-3">
+                        <a class="dropdown-item p-1" href="{% url 'users:me' %}">
+                            <i class="fa-solid fa-user-tie fs-4"></i>
+                            {{_("My Profile")}}
+                        </a>
+                    </li>
+                    <li class="small">
+                        <a class="dropdown-item" href="{{logout_url}}">
+                            {{_("Sign Out")}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</header>

@@ -1,0 +1,26 @@
+{% extends "core.html" %}
+
+
+{% block core_header%}
+{% include 'header-dashboard.html' %}
+{% include 'sidebar.html' %}
+{% endblock core_header%}
+{% block body%}
+<main id="main" class="main">
+    <div class="row">
+        <div class="col">
+            {% include "messages.html" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            {% include "alert-email-verification.html" %}
+        </div>
+    </div>
+    {% block dashboard_body %}
+    {% endblock dashboard_body %}
+</main>
+{% endblock body%}
+{% block core_footer%}
+<!-- No need footer in dashboard yet -->
+{% endblock core_footer%}

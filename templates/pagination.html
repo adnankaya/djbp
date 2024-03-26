@@ -1,0 +1,30 @@
+{% load i18n %}
+<div class="pagination">
+    <span class="step-links ">
+        {% if page.has_previous %}
+        <a class="badge bg-light text-dark-emphasis border border-dark-subtle "
+            href="?page=1{% if query %}&query={{query}}{% endif %}">{{_("first")}}</a>
+        <a class="badge text-bg-primary "
+            href="?page={{ page.previous_page_number }}{% if query %}&query={{query}}{% endif %}">
+            <!-- <i class="fa-solid fa-angles-left"></i> -->
+            &laquo; 
+            {{_("Prev")}}
+        </a>
+        {% endif %}
+        <span class="badge bg-light-subtle border border-secondary-subtle text-light-emphasis rounded-pill">
+            {{ page.number }} / {{ page.paginator.num_pages }}
+        </span>
+        {% if page.has_next %}
+        <a class="badge text-bg-primary "
+            href="?page={{ page.next_page_number }}{% if query %}&query={{query}}{% endif %}">
+            <!-- <i class="fa-solid fa-angles-right"></i> -->
+            &raquo;
+            {{_("Next")}}
+        </a>
+        <a class="badge bg-light text-dark-emphasis border border-dark-subtle "
+            href="?page={{ page.paginator.num_pages }}{% if query %}&query={{query}}{% endif %}">
+            {{_("last")}}
+        </a>
+        {% endif %}
+    </span>
+</div>
